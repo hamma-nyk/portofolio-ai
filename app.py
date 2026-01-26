@@ -8,6 +8,12 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 
+# Download semua data yang dibutuhkan NLTK
+nltk.download('punkt')
+nltk.download('punkt_tab')   # <--- WAJIB ADA
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
 # Inisialisasi App
 app = Flask(__name__)
 CORS(app)  # Izinkan akses dari React
