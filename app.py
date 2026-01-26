@@ -13,7 +13,18 @@ from nltk.stem import WordNetLemmatizer
 # ... (Bagian Konfigurasi Path & NLTK Tetap Sama) ...
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # ... (Kode NLTK download tetap sama) ...
+try:
+    nltk.data.find('tokenizers/punkt')
+    nltk.data.find('tokenizers/punkt_tab')
+    nltk.data.find('corpora/wordnet')
+except LookupError:
+    print("Mendownload data NLTK...")
+    nltk.download('punkt', quiet=True)
+    nltk.download('punkt_tab', quiet=True)
+    nltk.download('wordnet', quiet=True)
+    nltk.download('omw-1.4', quiet=True)
 
+# Inisialisasi App    
 app = Flask(__name__)
 CORS(app)
 lemmatizer = WordNetLemmatizer()
@@ -46,17 +57,55 @@ def load_resources_if_needed():
     return True
 
 # ... (List Toxic Words & Fungsi clean_up_sentence, bow TETAP SAMA) ...
+toxic_words = [
+    "anjing", "babi", "bangsat", "tolol", "goblok", 
+    "bodoh", "tai", "jancok", "asu", "kampret", "bego", 
+    "sialan", "fuck", "shit", "idiot"
+]
+def clean_up_sentence(sentence):
+    sentence_words = nltk.word_tokenize(sentence)
+    sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
+    return sentence_words
 
+def bow(sentence, words, show_details=True):
+    sentence_words = clean_up_sentence(sentence)
+    bag = [0] * len(words)
+    for s in sentence_words:
+        for i, w in enumerate(words):
+            if w == s:
+                bag[i] = 1
+    return(np.array(bag))
+    
 # ... (Fungsi predict_class TETAP SAMA, tapi hapus argumen model karena kita pakai global) ...
 def predict_class(sentence): # Hapus parameter model
     global model
     p = bow(sentence, words, show_details=False)
     res = model.predict(np.array([p]))[0]
+    
     # ... (sisanya sama) ...
+    ERROR_THRESHOLD = 0.85
+    results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
+    results.sort(key=lambda x: x[1], reverse=True)
+    
+    return_list = []
+    for r in results:
+        return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
+    
     return return_list
 
 # ... (Fungsi get_response TETAP SAMA) ...
-
+def get_response(ints, intents_json):
+    if not ints:
+        return "Maaf, saya tidak mengerti maksud Anda."
+        
+    tag = ints[0]['intent']
+    list_of_intents = intents_json['intents']
+    for i in list_of_intents:
+        if(i['tag'] == tag):
+            result = random.choice(i['responses'])
+            break
+    return result
+    
 @app.route('/chat', methods=['POST'])
 def chat():
     # 1. LOAD MODEL DULU SEBELUM JAWAB
@@ -85,4 +134,6 @@ def chat():
         print(f"Error: {e}")
         return jsonify({"response": "Error internal server.", "type": "error"}), 500
 
-# ... (Main block tetap sama) ...
+# Untuk local testing saja. Saat deploy, Gunicorn yang handle.
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
