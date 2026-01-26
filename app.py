@@ -7,12 +7,22 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
+import os
 
-# Download semua data yang dibutuhkan NLTK
-nltk.download('punkt')
-nltk.download('punkt_tab')   # <--- WAJIB ADA
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+# Cek folder data NLTK standar
+nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
+nltk.data.path.append(nltk_data_path)
+
+# Download hanya jika belum ada (Fallback)
+try:
+    nltk.data.find('tokenizers/punkt')
+    nltk.data.find('tokenizers/punkt_tab')
+except LookupError:
+    print("Mendownload data NLTK...")
+    nltk.download('punkt', quiet=True)
+    nltk.download('punkt_tab', quiet=True)
+    nltk.download('wordnet', quiet=True)
+    nltk.download('omw-1.4', quiet=True)
 
 # Inisialisasi App
 app = Flask(__name__)
