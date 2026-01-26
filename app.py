@@ -19,10 +19,10 @@ try:
     nltk.data.find('tokenizers/punkt_tab')
 except LookupError:
     print("Mendownload data NLTK...")
-    nltk.download('punkt', quiet=True)
-    nltk.download('punkt_tab', quiet=True)
-    nltk.download('wordnet', quiet=True)
-    nltk.download('omw-1.4', quiet=True)
+    nltk.download('punkt')
+    nltk.download('punkt_tab')
+    nltk.download('wordnet')
+    nltk.download('omw-1.4')
 
 # Inisialisasi App
 app = Flask(__name__)
