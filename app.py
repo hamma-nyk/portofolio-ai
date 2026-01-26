@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import random
@@ -7,34 +8,41 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
-import os
 
-# Cek folder data NLTK standar
-nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
-nltk.data.path.append(nltk_data_path)
+# --- KONFIGURASI PATH (PENTING UNTUK DEPLOY) ---
+# Ini memastikan file ditemukan dimanapun Gunicorn dijalankan
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Download hanya jika belum ada (Fallback)
+# --- SETUP NLTK ---
+# Download data NLTK secara diam-diam (quiet=True) agar log bersih
 try:
     nltk.data.find('tokenizers/punkt')
     nltk.data.find('tokenizers/punkt_tab')
+    nltk.data.find('corpora/wordnet')
 except LookupError:
     print("Mendownload data NLTK...")
-    nltk.download('punkt')
-    nltk.download('punkt_tab')
-    nltk.download('wordnet')
-    nltk.download('omw-1.4')
+    nltk.download('punkt', quiet=True)
+    nltk.download('punkt_tab', quiet=True)
+    nltk.download('wordnet', quiet=True)
+    nltk.download('omw-1.4', quiet=True)
 
 # Inisialisasi App
 app = Flask(__name__)
-CORS(app)  # Izinkan akses dari React
+CORS(app)
 
 lemmatizer = WordNetLemmatizer()
 
-# Load Data (Pastikan file ini ada di folder yang sama)
-intents = json.loads(open('intents.json').read())
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
-model = load_model('chatbot_model.h5')
+# --- LOAD DATA DENGAN ABSOLUTE PATH ---
+try:
+    print("Loading model dan data...")
+    intents = json.loads(open(os.path.join(BASE_DIR, 'intents.json')).read())
+    words = pickle.load(open(os.path.join(BASE_DIR, 'words.pkl'), 'rb'))
+    classes = pickle.load(open(os.path.join(BASE_DIR, 'classes.pkl'), 'rb'))
+    model = load_model(os.path.join(BASE_DIR, 'chatbot_model.h5'))
+    print("Model berhasil di-load!")
+except Exception as e:
+    print(f"CRITICAL ERROR: Gagal load file: {e}")
+    # Biarkan error raise agar kita tahu di logs render jika file hilang
 
 # List Kata Kasar
 toxic_words = [
@@ -71,6 +79,9 @@ def predict_class(sentence, model):
     return return_list
 
 def get_response(ints, intents_json):
+    if not ints:
+        return "Maaf, saya tidak mengerti maksud Anda."
+        
     tag = ints[0]['intent']
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
@@ -82,32 +93,52 @@ def get_response(ints, intents_json):
 # --- API ENDPOINT ---
 @app.route('/chat', methods=['POST'])
 def chat():
-    data = request.get_json()
-    message = data['message']
-    
-    # 1. Cek Toxic
-    message_lower = message.lower()
-    for word in toxic_words:
-        if word in message_lower:
+    try:
+        data = request.get_json()
+        if not data or 'message' not in data:
+            return jsonify({"response": "Error: Pesan tidak boleh kosong.", "type": "error"}), 400
+
+        message = data['message']
+        
+        # 1. Cek Toxic (LOGIKA DIPERBAIKI)
+        # Tokenize dulu agar "lantai" tidak terdeteksi sebagai "tai"
+        # Kita cek apakah ada kata kasar di dalam list kata-kata user
+        message_words = nltk.word_tokenize(message.lower())
+        
+        is_toxic = False
+        for word in message_words:
+            if word in toxic_words:
+                is_toxic = True
+                break
+                
+        if is_toxic:
             return jsonify({
                 "response": "Maaf, tolong gunakan bahasa yang sopan. Saya tidak akan merespon kata-kata kasar.",
                 "type": "toxic"
             })
 
-    # 2. Prediksi AI
-    ints = predict_class(message, model)
-    
-    if len(ints) > 0:
-        res = get_response(ints, intents)
+        # 2. Prediksi AI
+        ints = predict_class(message, model)
+        
+        if len(ints) > 0:
+            res = get_response(ints, intents)
+            return jsonify({
+                "response": res,
+                "type": "success"
+            })
+        else:
+            return jsonify({
+                "response": "Maaf, pertanyaan Anda sepertinya di luar konteks Data Diri atau Skill saya.",
+                "type": "unknown"
+            })
+            
+    except Exception as e:
+        print(f"Error pada endpoint /chat: {e}")
         return jsonify({
-            "response": res,
-            "type": "success"
-        })
-    else:
-        return jsonify({
-            "response": "Maaf, pertanyaan Anda sepertinya di luar konteks Data Diri atau Skill saya.",
-            "type": "unknown"
-        })
+            "response": "Maaf, terjadi kesalahan internal pada server.",
+            "type": "error"
+        }), 500
 
-#if __name__ == '__main__':
-#    app.run(port=5000, debug=True)
+# Untuk local testing saja. Saat deploy, Gunicorn yang handle.
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
