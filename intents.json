@@ -3,24 +3,24 @@
     {
       "tag": "salam_general",
       "patterns": [
-        "Halo", "Hi", "Hai", "Halo Budi", "Hi Admin", "Bro", "Gan", 
+        "Halo", "Hi", "Hai", "Halo Iko", "Hi Admin", "Bro", "Gan", 
         "Selamat Pagi", "Selamat Siang", "Selamat Sore", "Selamat Malam", 
         "Permisi", "Tes", "Ping", "P", "Hallow"
       ],
       "responses": [
-        "Halo! Budi di sini. Ada yang bisa saya bantu terkait portofolio atau jasa saya?",
-        "Hai! Ini Budi. Silakan tinggalkan pesan atau tanya langsung seputar keahlian saya."
+        "Halo! Iko di sini. Ada yang bisa saya bantu terkait portofolio atau jasa saya?",
+        "Hai! Ini Iko. Silakan tinggalkan pesan atau tanya langsung seputar keahlian saya."
       ]
     },
     {
       "tag": "salam_islam",
       "patterns": [
-        "Assalamualaikum", "Assalamu'alaikum", "Salam", 
+        "Assalamualaikum", "Assalamu'alaikum", "Salam", "Askum", 
         "Assalamualaikum warahmatullah", "Assalam", "Samlekom"
       ],
       "responses": [
         "Waalaikumsalam. Silakan, ada yang bisa saya bantu?",
-        "Waalaikumsalam Warahmatullahi Wabarakatuh. Mari diskusikan kebutuhan IT Anda."
+        "Waalaikumsalam Warahmatullahi Wabarakatuh. Mari diskusikan kebutuhan Anda."
       ]
     },
     {
@@ -32,9 +32,9 @@
         "Jujur, kamu ini AI bukan?", "Apakah ini real person?"
       ],
       "responses": [
-        "Saya Budi Santoso. Anggap saja Anda sedang chatting langsung dengan saya.",
-        "Ini Budi. Saya menyetting sistem ini agar bisa menjawab pertanyaan Anda secepat mungkin seolah saya sendiri yang membalas.",
-        "Bukan, ini Budi. Saya hadir di sini untuk menjawab pertanyaan Anda 24 jam."
+        "Saya Iko. Anda sedang chatting langsung dengan saya hahaha.",
+        "Saya Iko. Saya menyetting sistem ini agar bisa menjawab pertanyaan Anda secepat mungkin karena saya sendiri yang membalas.",
+        "Bukan, saya Iko. Saya hadir di sini untuk menjawab pertanyaan Anda 24 jam."
       ]
     },
     {
@@ -45,8 +45,8 @@
         "Boleh tau namanya?", "Pemilik CV ini siapa?", "Ini profil siapa?"
       ],
       "responses": [
-        "Nama saya Budi Santoso.",
-        "Saya Budi Santoso, pemilik profil ini."
+        "Nama saya Muhammad Yiko Satriyawibawa, biasa dipanggil Iko.",
+        "Saya Iko, pemilik profil ini."
       ]
     },
     {
@@ -66,19 +66,24 @@
     {
       "tag": "skill_summary",
       "patterns": [
-        "Apa skill kamu?", "Apa keahlian kamu?", "Keahlian kamu?", "Skill?", "Bisa apa aja?",
+        "Skill kamu?","Apa skill kamu?", "Apa keahlian kamu?", "Keahlian kamu?", "Skill?", "Bisa apa aja?",
         "Apa rangkuman keahlian kamu?", "Secara garis besar kamu bisa apa?", 
         "Apa spesialisasi utama kamu?", "Sebutkan skill set kamu secara umum", 
         "Ringkasan kemampuan IT kamu"
       ],
       "responses": [
-        "Saya memiliki 3 keahlian utama: 1. Network Engineering (Mikrotik/Ruijie), 2. Backend Development (Laravel/Python), dan 3. IT Support.",
-        "Fokus saya adalah Fullstack Web Development dan Infrastruktur Jaringan (Networking)."
+        "Saya memiliki 2 keahlian utama: 1. IT Support termasuk Infrastruktur Jaringan (Networking), 2. App Development (Web & Desktop)",
+        "Fokus saya adalah App Development dan IT Support termasuk Infrastruktur Jaringan (Networking)."
       ]
     },
     {
       "tag": "skill_network_strict",
       "patterns": [
+	    "Apa skill Network kamu?",
+		"Skill Network kamu?","Network kamu?",
+        "Network",
+		"Apa skill Jaringan kamu?",
+		"Skill Jaringan kamu?","Jaringan kamu?",
         "Mikrotik", "Ubiquiti", "Switch", "Access point", "Router", "Jaringan", "Networking",
         "Apakah kamu berpengalaman setting Mikrotik?", "Bisa konfigurasi router Mikrotik?", 
         "Keahlian setting Access Point Ubiquiti Unifi", "Pengalaman manajemen perangkat Ruijie Reyee", 
@@ -87,27 +92,31 @@
         "Bisa setting Firewall dan manajemen bandwidth?"
       ],
       "responses": [
-        "Ya, saya sangat berpengalaman di Networking. Saya menguasai konfigurasi Mikrotik (MTCNA), manajemen Cloud Ubiquiti/Ruijie, serta instalasi fisik Fiber Optic.",
-        "Untuk jaringan, saya biasa menangani setup topologi kantor, konfigurasi Switch/Router, hingga manajemen Hotspot dan Firewall."
+        "Ya, saya sangat berpengalaman di Networking. Saya menguasai konfigurasi Mikrotik, manajemen Cloud Ruijie, CCTV, serta instalasi fisik Fiber Optic.",
+        "Untuk jaringan, saya biasa menangani setup topologi kantor, konfigurasi Switch/Router, hingga manajemen Hotspot dan Firewall.",
+		"Dalam pengalaman saya, saya dapat menggunakan beberapa brand networking seperti Ruije, Mikrotik, Ubiquiti dan TP-link"
       ]
     },
     {
       "tag": "skill_backend_strict",
       "patterns": [
-        "Backend", "Backend bahasa apa?", "Coding backend", "API",
+        "Backend", "Backend bahasa apa?", "Coding backend", "API", "Apa skill backend kamu?",
+		"Skill backend kamu?","Backend kamu?",
         "Apakah kamu menguasai framework Laravel?", "Bisa bahasa pemrograman PHP?", 
         "Pengalaman membuat REST API dengan Nodejs", "Apakah bisa coding Python dan Flask?", 
         "Keahlian backend developer apa saja?", "Framework apa yang dipakai untuk backend?", 
         "Apakah bisa membuat sistem API?"
       ],
       "responses": [
-        "Di Backend, tech stack utama saya adalah Laravel (PHP) untuk aplikasi kompleks dan Node.js/Express atau Python untuk layanan API yang cepat.",
+        "Di Backend, tech stack utama saya adalah Node.js/Express atau Python untuk layanan API yang cepat.",
         "Saya terbiasa membangun arsitektur backend yang aman, termasuk pembuatan REST API dan manajemen database."
       ]
     },
     {
       "tag": "skill_frontend_strict",
       "patterns": [
+	    "Apa skill Frontend kamu?",
+		"Skill Frontend kamu?","Frontend kamu?",
         "Frontend", "Frontend bahasa apa?", "Tampilan web", "Web design",
         "Apakah kamu bisa Reactjs?", "Menguasai frontend development?", 
         "Bisa slicing design ke HTML CSS?", "Framework frontend apa yang dikuasai?", 
@@ -121,6 +130,8 @@
     {
       "tag": "skill_database_strict",
       "patterns": [
+		"Apa skill Database kamu?",
+		"Skill Database kamu?","Database kamu?",
         "Database", "Database bisa apa aja?", "SQL", "Data",
         "Database apa yang kamu kuasai?", "Apakah bisa SQL Server?", 
         "Pengalaman menggunakan PostgreSQL", "Bisa manajemen database MySQL?", 
@@ -170,7 +181,7 @@
     {
       "tag": "tahunlulus_strict",
       "patterns": [
-        "Lulus tahun berapa?", "Tahun lulus?", "Wisuda tahun berapa?", "Angkatan berapa?"
+        "Lulus?", "Lulus tahun berapa?", "Tahun lulus?", "Wisuda tahun berapa?", "Angkatan berapa?"
       ],
       "responses": [
         "Saya lulus tahun 2020."
@@ -185,7 +196,7 @@
         "Project networking yang pernah dikerjakan"
       ],
       "responses": [
-        "Beberapa proyek unggulan saya: 1. SIMRS (Sistem Rumah Sakit) berbasis Laravel, 2. Dashboard Monitoring Server, 3. Bot WhatsApp AI, dan 4. Instalasi Jaringan Kantor 3 Lantai."
+        "Beberapa proyek unggulan saya: 1. MyCtn (Aplikasi catatan), 2. Dashboard Monitoring Server, 3. Bot WhatsApp AI"
       ]
     },
     {
@@ -220,8 +231,17 @@
         "Kontak person yang bisa dihubungi"
       ],
       "responses": [
-        "Anda bisa menghubungi saya via WhatsApp: 0812-XXXX-XXXX atau Email: budi@contoh.com.",
-        "Kunjungi juga LinkedIn profesional saya di: linkedin.com/in/budisantoso"
+        "Anda bisa menghubungi saya via form di bagian kontak, atau bisa mampir ke github dan LinkedIn saya.",
+        "Kunjungi LinkedIn saya jangan lupa connect ya! atau bisa juga mengisi form di bagian kontak yaa."
+      ]
+    },
+	{
+      "tag": "tutorial_strict",
+      "patterns": [
+        "Ajari", "Bagaimana", "Tatacara", "Tutorial", "Cara"
+      ],
+      "responses": [
+        "Maaf saya hanya fokus dengan pertanyaan tentang diri saya."
       ]
     },
     {
