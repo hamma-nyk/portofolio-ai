@@ -5,8 +5,8 @@ import time
 # --- KONFIGURASI URL ---
 # Ganti dengan URL Render kamu jika sudah deploy
 # URL = "https://nama-project-kamu.onrender.com/chat"
-# URL = "https://portofolio-ai.onrender.com/chat"  # Localhost
-URL = "http://127.0.0.1:5000/chat"
+URL = "https://portofolio-ai.onrender.com/chat"  # Localhost
+# URL = "http://127.0.0.1:5000/chat"
 def send_message(message):
     payload = {"message": message}
     headers = {"Content-Type": "application/json"}
