@@ -77,20 +77,34 @@ def bow(sentence, words, show_details=True):
     return(np.array(bag))
     
 # ... (Fungsi predict_class TETAP SAMA, tapi hapus argumen model karena kita pakai global) ...
-def predict_class(sentence): # Hapus parameter model
-    global model
+def predict_class(sentence):
+    # 1. --- LOGIKA BARU: EXACT MATCH (Jalan Pintas) ---
+    # Jika input user SAMA PERSIS dengan pattern di JSON, langsung ambil!
+    # Ini mengatasi masalah kata pendek seperti "Hi", "P", "Tes" yang sering kena filter threshold
+    sentence_lower = sentence.lower().strip()
+    
+    # Kita butuh akses ke intents untuk cek manual
+    # Pastikan variable 'intents' sudah di-load (global intents)
+    if intents: 
+        for intent in intents['intents']:
+            for pattern in intent['patterns']:
+                if pattern.lower() == sentence_lower:
+                    # Langsung kembalikan hasil dengan keyakinan 100%
+                    return [{"intent": intent['tag'], "probability": "1.0"}]
+
+    # 2. --- LOGIKA LAMA: AI PREDICTION ---
     p = bow(sentence, words, show_details=False)
     res = model.predict(np.array([p]))[0]
     
-    # ... (sisanya sama) ...
-    ERROR_THRESHOLD = 0.85
+    # Turunkan Threshold sedikit biar lebih ramah (0.75 cukup aman)
+    ERROR_THRESHOLD = 0.75 
+    
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
     results.sort(key=lambda x: x[1], reverse=True)
     
     return_list = []
     for r in results:
         return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
-    
     return return_list
 
 # ... (Fungsi get_response TETAP SAMA) ...
