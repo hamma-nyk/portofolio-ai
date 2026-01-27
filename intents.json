@@ -461,6 +461,62 @@
       ]
     },
     {
+      "tag": "skill_app_dev_general",
+      "patterns": [
+        "App dev",
+        "Application Development",
+        "Pengembangan aplikasi",
+        "Bikin aplikasi",
+        "Buat software",
+        "Jasa pembuatan sistem",
+        "Bisa coding aplikasi apa?",
+        "Software development",
+        "Bikin program"
+      ],
+      "responses": [
+        "Saya fokus mengembangkan **Aplikasi Berbasis Web (Web Apps)** dan **Aplikasi Desktop**. Solusi saya mencakup Sistem Informasi Manajemen, Dashboard Monitoring, hingga Automation Tools.",
+        "Dalam App Development, saya mengutamakan fungsionalitas dan efisiensi. Saya bisa membangun sistem dari nol (From Scratch) atau mengembangkan sistem yang sudah ada.",
+        "Saya mengembangkan aplikasi yang menyelesaikan masalah nyata. Mulai dari pencatatan data (CRUD) hingga integrasi API yang kompleks."
+      ]
+    },
+    {
+      "tag": "skill_desktop_app",
+      "patterns": [
+        "Aplikasi desktop",
+        "Software komputer",
+        "Bikin file exe",
+        "Desktop programming",
+        "Electronjs",
+        "Python GUI",
+        "Tkinter",
+        "Aplikasi windows",
+        "Software kasir desktop",
+        "Program PC"
+      ],
+      "responses": [
+        "Untuk aplikasi Desktop, saya menggunakan **Electron.js** (untuk tampilan modern cross-platform) atau **Python (Tkinter/TTKBootstrap)** untuk utility tools yang ringan.",
+        "Saya berpengalaman membuat tools automation dan dashboard monitoring berbasis desktop yang berjalan stabil di Windows.",
+        "Ya, saya bisa mengkonversi aplikasi web menjadi aplikasi desktop (.exe) yang bisa diinstall di komputer klien."
+      ]
+    },
+    {
+      "tag": "development_workflow",
+      "patterns": [
+        "Alur pembuatan aplikasi",
+        "Workflow",
+        "Proses pengerjaan",
+        "Berapa lama bikin aplikasi?",
+        "SDLC",
+        "Metode kerja",
+        "Tahapan coding"
+      ],
+      "responses": [
+        "Alur kerja saya: 1. **Analisis Kebutuhan** (Diskusi), 2. **Desain & Prototyping**, 3. **Development (Coding)**, 4. **Testing**, dan 5. **Deployment**.",
+        "Saya terbiasa bekerja dengan metode Agile. Kita bisa diskusi bertahap (sprint) agar aplikasi yang jadi benar-benar sesuai keinginan Anda.",
+        "Durasi pengerjaan tergantung kompleksitas fitur. Untuk estimasi waktu dan biaya, silakan hubungi saya via WhatsApp."
+      ]
+    },
+    {
       "tag": "bye",
       "patterns": [
         "Terima kasih",
