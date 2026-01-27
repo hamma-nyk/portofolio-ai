@@ -76,7 +76,7 @@ model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
 model.add(Dropout(0.5))
 # Layer Hidden
 model.add(Dense(64, activation='relu'))
-model.add(Dropout(0.5))
+model.add(Dropout(0.2))
 # Layer Output: sesuai jumlah kategori intent (softmax untuk probabilitas)
 model.add(Dense(len(train_y[0]), activation='softmax'))
 
@@ -86,7 +86,7 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 
 # 5. Training
 print("Mulai training model...")
-hist = model.fit(np.array(train_x), np.array(train_y), epochs=300, batch_size=5, verbose=1)
+hist = model.fit(np.array(train_x), np.array(train_y), epochs=500, batch_size=5, verbose=1)
 
 # Simpan Model
 model.save('chatbot_model.h5')
