@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Divine Asia Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Cormorant+Garamond:ital,wght@1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- 1. Background & Setup --- */
+      body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden; /* Agar partikel tidak bikin scroll */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Latar Putih dengan Vignette Emas Tipis */
+        background: radial-gradient(
+          circle at center,
+          #ffffff 0%,
+          #fdfbf7 60%,
+          #f5e6d3 100%
+        );
+        font-family: "Cinzel", serif;
+      }
+
+      /* --- 2. Partikel Emas (Floating Particles) --- */
+      .particle-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Agar bisa diklik tembus */
+        z-index: 1;
+      }
+
+      .particle {
+        position: absolute;
+        background: radial-gradient(
+          circle,
+          #ffd700 0%,
+          rgba(255, 215, 0, 0) 70%
+        );
+        border-radius: 50%;
+        opacity: 0;
+        animation: floatUp 10s infinite linear;
+      }
+
+      /* Membuat variasi ukuran dan posisi partikel secara acak */
+      .p1 {
+        width: 10px;
+        height: 10px;
+        left: 10%;
+        animation-duration: 8s;
+        animation-delay: 0s;
+      }
+      .p2 {
+        width: 20px;
+        height: 20px;
+        left: 20%;
+        animation-duration: 12s;
+        animation-delay: 2s;
+      }
+      .p3 {
+        width: 5px;
+        height: 5px;
+        left: 35%;
+        animation-duration: 15s;
+        animation-delay: 4s;
+      }
+      .p4 {
+        width: 15px;
+        height: 15px;
+        left: 50%;
+        animation-duration: 10s;
+        animation-delay: 1s;
+      }
+      .p5 {
+        width: 8px;
+        height: 8px;
+        left: 65%;
+        animation-duration: 14s;
+        animation-delay: 3s;
+      }
+      .p6 {
+        width: 25px;
+        height: 25px;
+        left: 80%;
+        animation-duration: 18s;
+        animation-delay: 5s;
+      }
+      .p7 {
+        width: 6px;
+        height: 6px;
+        left: 90%;
+        animation-duration: 9s;
+        animation-delay: 0.5s;
+      }
+
+      /* Animasi Partikel Melayang */
+      @keyframes floatUp {
+        0% {
+          transform: translateY(110vh) scale(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.8;
+        }
+        80% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1);
+          opacity: 0;
+        }
+      }
+
+      /* --- 3. Kartu Utama (Glass Effect) --- */
+      .main-card {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        padding: 50px;
+        max-width: 1200px;
+
+        /* Efek Kaca Putih Bersih */
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 215, 0, 0.5); /* Border Emas */
+        border-radius: 20px;
+        box-shadow:
+          0 20px 50px rgba(212, 175, 55, 0.15),
+          /* Bayangan Emas */ inset 0 0 30px rgba(255, 255, 255, 0.8);
+      }
+
+      /* --- 4. Bagian Gambar (Kiri) --- */
+      .image-frame {
+        position: relative;
+        width: 350px; /* Sesuaikan ukuran yang diinginkan */
+        height: 450px; /* Sesuaikan ukuran yang diinginkan */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        /* PENTING: Agar gambar mengikuti bentuk lengkungan frame */
+        /* overflow: hidden; */
+
+        /* Style Bingkai Arch (Kubah) dari desain sebelumnya */
+        border-radius: 100px 100px 0 0;
+        /* border-radius: 20px; <-- Kalau mau kotak tumpul pakai ini */
+      }
+
+      /* Bingkai Ganda Fantasi */
+      .image-frame::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border: 2px solid #d4af37; /* Emas */
+        border-radius: 100px 100px 5px 5px; /* Bentuk Kubah/Arch */
+        opacity: 0.6;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Bentuk Kubah (Arch Window) */
+        border-radius: 90px 90px 10px 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        filter: sepia(20%) contrast(110%);
+      }
+
+      /* --- 5. Bagian Teks (Kanan) --- */
+      .text-content {
+        max-width: 500px;
+      }
+
+      .main-title {
+        font-size: 5rem;
+        line-height: 0.9;
+        margin: 0;
+        color: #d4af37; /* Warna dasar Emas */
+
+        /* Gradien Emas Mengkilap */
+        background: linear-gradient(
+          to right,
+          #bf953f,
+          #fcf6ba,
+          #b38728,
+          #fbf5b7,
+          #aa771c
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-size: 200% auto;
+        animation: shine 5s linear infinite;
+
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        filter: drop-shadow(0 2px 5px rgba(212, 175, 55, 0.3));
+      }
+
+      .subtitle {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        font-style: italic;
+        color: #5a4a42; /* Coklat tua elegan */
+        margin-top: 20px;
+        border-top: 1px solid #d4af37;
+        padding-top: 10px;
+        display: inline-block;
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding: 8px 20px;
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid #d4af37;
+        border-radius: 50px;
+        color: #b38728;
+        font-weight: 800;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+      }
+
+      .pulse-dot {
+        width: 8px;
+        height: 8px;
+        background: #d4af37;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      /* --- Animasi Tambahan --- */
+      @keyframes shine {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+        }
+      }
+
+      /* Responsif HP */
+      @media (max-width: 900px) {
+        .main-card {
+          flex-direction: column;
+          text-align: center;
+          padding: 80px 30px 80px 30px;
+          gap: 30px;
+        }
+        .main-title {
+          font-size: 3rem;
+        }
+        .image-frame {
+          width: 250px;
+          height: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="particle-container">
+      <div class="particle p1"></div>
+      <div class="particle p2"></div>
+      <div class="particle p3"></div>
+      <div class="particle p4"></div>
+      <div class="particle p5"></div>
+      <div class="particle p6"></div>
+      <div class="particle p7"></div>
+    </div>
+
+    <div class="main-card">
+      <div class="image-frame">
+        <img
+          src="{{ url_for('static', filename='images/asia.webp') }}"
+          alt="Tokoh Asia Fantasi"
+          class="hero-image"
+        />
+        <!-- <img
+          src="https://img.freepik.com/free-photo/digital-art-style-illustration-men_23-2151126767.jpg?t=st=1716960000~exp=1716963600~hmac=a1b2c3d4"
+          alt="Asia Fantasy Character"
+          class="hero-image"
+        /> -->
+      </div>
+
+      <div class="text-content">
+        <div class="status-badge">
+          <div class="pulse-dot"></div>
+          SYSTEM ONLINE
+        </div>
+        <h1 class="main-title">Asia<br />Assistant</h1>
+        <div class="subtitle">"Serving you with divine intelligence."</div>
+      </div>
+    </div>
+  </body>
+</html>

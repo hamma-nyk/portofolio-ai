@@ -1,5 +1,6 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template 
+from flask_cors import CORS
 from flask_cors import CORS
 import random
 import json
@@ -120,6 +121,10 @@ def get_response(ints, intents_json):
             break
     return result
     
+@app.route('/', methods=['GET'])
+def home():
+    # Flask otomatis mencari file 'index.html' di dalam folder 'templates'
+    return render_template('index.html')
 @app.route('/chat', methods=['POST'])
 def chat():
     # 1. LOAD MODEL DULU SEBELUM JAWAB
