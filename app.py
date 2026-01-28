@@ -27,7 +27,7 @@ except LookupError:
 
 # Inisialisasi App    
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["https://ikonyek.my.id", "http://localhost:5173"]}})
+CORS(app, resources={r"/*": {"origins": ["https://wwww.ikonyek.my.id", "http://localhost:5173"]}})
 lemmatizer = WordNetLemmatizer()
 
 # --- BAGIAN INI YANG DIUBAH (LAZY LOADING) ---

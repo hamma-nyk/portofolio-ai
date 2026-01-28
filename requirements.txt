@@ -4,3 +4,4 @@ tensorflow
 nltk
 numpy
 gunicorn
+python-dotenv

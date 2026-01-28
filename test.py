@@ -2,12 +2,16 @@ import requests
 import json
 import time
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 API_KEY = os.getenv("API_KEY") 
+print("API_KEY:", API_KEY)
 # --- KONFIGURASI URL ---
 # Ganti dengan URL Render kamu jika sudah deploy
 # URL = "https://nama-project-kamu.onrender.com/chat"
-# URL = "https://portofolio-ai.onrender.com/chat"  # Localhost
-URL = "http://127.0.0.1:5000/chat"
+URL = "https://portofolio-ai.onrender.com/chat"  # Localhost
+# URL = "http://127.0.0.1:5000/chat"
 def send_message(message):
     payload = {"message": message}
     headers = {"Content-Type": "application/json", "X-Secret-Token": API_KEY}
