@@ -10,7 +10,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 # HAPUS IMPORT load_model DI ATAS (Kita pindahkan ke bawah)
 # from tensorflow.keras.models import load_model 
-
+API_KEY = os.getenv("API_KEY")
 # ... (Bagian Konfigurasi Path & NLTK Tetap Sama) ...
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # ... (Kode NLTK download tetap sama) ...
@@ -27,7 +27,7 @@ except LookupError:
 
 # Inisialisasi App    
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": ["https://ikonyek.my.id", "http://localhost:5173"]}})
 lemmatizer = WordNetLemmatizer()
 
 # --- BAGIAN INI YANG DIUBAH (LAZY LOADING) ---
@@ -127,6 +127,9 @@ def home():
     return render_template('index.html')
 @app.route('/chat', methods=['POST'])
 def chat():
+    client_key = request.headers.get('X-Secret-Token')
+    if client_key != API_KEY:
+        return jsonify({"response": "Error: Kunci API tidak valid.", "type": "error"}), 401
     # 1. LOAD MODEL DULU SEBELUM JAWAB
     if not load_resources_if_needed():
         return jsonify({"response": "Server sedang sibuk (Gagal load model).", "type": "error"}), 500
