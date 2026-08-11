@@ -24,7 +24,18 @@
         "Hallow",
         "Woi",
         "Misi",
-        "Spada"
+        "Spada",
+        "Hay",
+        "Hei",
+        "Kak",
+        "Mbak",
+        "Om",
+        "Hloo",
+        "Haloo",
+        "Haloooo",
+        "Hiii",
+        "Yo",
+        "Yoo"
       ],
       "responses": [
         "Halo! Saya **Asia Assistant**, asisten virtual pribadi Iko. Ada yang bisa saya bantu jelaskan tentang profil beliau?",
@@ -88,7 +99,15 @@
         "Profil singkat Iko",
         "Orangnya gimana?",
         "Iko itu apa?",
-        "Kenalan dengan Iko"
+        "Kenalan dengan Iko",
+        "Siapa sih Iko",
+        "Tentang pemilik web ini",
+        "Pemilik website ini siapa",
+        "Ini web siapa",
+        "Yang punya web ini siapa",
+        "Profil owner",
+        "Ceritain dong tentang Iko",
+        "Iko siapa ya"
       ],
       "responses": [
         "Iko (Muhammad Yiko Satriyawibawa) adalah seorang **IT Enthusiast** yang unik. Beliau ahli dalam memecahkan masalah melalui kode (Programming) maupun infrastruktur fisik (Networking).",
@@ -105,7 +124,12 @@
         "Status kerjaan dia sekarang?",
         "Masih nganggur?",
         "Available ga?",
-        "Bisa fulltime?"
+        "Bisa fulltime?",
+        "Iko lagi kerja dimana?",
+        "Udah kerja belum?",
+        "Status karir Iko",
+        "Iko mau diajak kerja ga?",
+        "Bisa diajak gabung ga?"
       ],
       "responses": [
         "Kabar baik! Saat ini Iko berstatus **Open to Work**. Beliau siap berkontribusi untuk perusahaan Anda, baik Full-time maupun Freelance.",
@@ -126,7 +150,13 @@
         "Apa spesialisasi utama Iko?",
         "Sebutkan skill set dia",
         "Ringkasan kemampuan IT Iko",
-        "Tech stack dia apa?"
+        "Tech stack dia apa?",
+        "Dia jago apa?",
+        "Iko jago apa?",
+        "Iko mahir apa?",
+        "Kemampuan Iko apa aja?",
+        "Iko bisa ngapain aja?",
+        "Apa yang dikuasai Iko?"
       ],
       "responses": [
         "Iko adalah *Hybrid talent*. Beliau kuat di lapangan (Network Engineer/IT Support) dan tajam di belakang layar (Fullstack Developer).",
@@ -371,7 +401,12 @@
         "Pengalaman bikin apa aja?",
         "Hasil karya coding",
         "Proyek jaringan",
-        "Pernah handle project apa?"
+        "Pernah handle project apa?",
+        "Portofolio Iko apa aja?",
+        "Contoh kerjaan dia?",
+        "Pernah bikin apa aja?",
+        "Showcase project",
+        "Ada contoh hasil kerja?"
       ],
       "responses": [
         "Beberapa *masterpiece* Iko: 1. **MyCtn** (App Catatan), 2. **Dashboard Monitoring Server**, dan 3. **Smart WhatsApp Bot**.",
@@ -389,7 +424,13 @@
         "Jasa setting mikrotik?",
         "Proyek cabutan",
         "Open commission?",
-        "Rate card berapa?"
+        "Rate card berapa?",
+        "Berapa harga jasa?",
+        "Biaya bikin web?",
+        "Harga bikin aplikasi?",
+        "Tarif jasa Iko",
+        "Iko terima project ga?",
+        "Mau pesen web"
       ],
       "responses": [
         "Tentu! Iko terbuka untuk proyek Freelance: 1. Pembuatan Web App, 2. Setup/Maintenance Jaringan Kantor, 3. Script Automation.",
@@ -420,7 +461,13 @@
         "Alamat Email",
         "Nomor HP",
         "Punya LinkedIn?",
-        "Sosial media"
+        "Sosial media",
+        "Cara hubungi Iko",
+        "Gimana cara kontak?",
+        "Link LinkedIn",
+        "Instagram Iko",
+        "GitHub Iko",
+        "Mau chat langsung sama Iko"
       ],
       "responses": [
         "Jalur tercepat menghubungi Iko adalah via **WhatsApp** (link ada di footer/navbar) atau **Email** di contact form.",
@@ -572,7 +619,11 @@
         "Iko's bio",
         "What is his background?",
         "Short profile",
-        "What kind of person is he?"
+        "What kind of person is he?",
+        "Who owns this website?",
+        "About the owner",
+        "Who made this site?",
+        "Introduce Iko"
       ],
       "responses": [
         "Iko (Muhammad Yiko Satriyawibawa) is a unique **IT Enthusiast**. He is an expert in solving problems through code (Programming) as well as physical infrastructure (Networking).",
@@ -603,7 +654,10 @@
         "What can he do?",
         "Skill summary",
         "What is his main specialty?",
-        "List his general skill set"
+        "List his general skill set",
+        "What is Iko good at?",
+        "Tech stack?",
+        "What does he specialize in?"
       ],
       "responses": [
         "Iko is a *Hybrid talent*. He is strong in the field (Network Engineer/IT Support) and sharp behind the scenes (Fullstack Developer).",
