@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,450 +7,323 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
 
     <style>
-      /* --- 1. Background & Setup --- */
+      :root {
+        --bg: #171717;
+        --surface-deep: #0a0a0a;
+        --border: #262626;
+        --text-primary: #fafafa;
+        --text-muted: #a3a3a3;
+        --blue: #93c5fd;
+        --blue-border: rgba(59, 130, 246, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      *::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      *::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+      }
+      *::-webkit-scrollbar-thumb:hover {
+        background-color: #8b5cf6;
+      }
+
       body {
         margin: 0;
-        height: 100vh;
-        overflow: hidden;
+        min-height: 100vh;
+        overflow-x: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
-        /* Pure Black Background */
-        background: #000000;
-        font-family: "Inter", sans-serif;
+        padding: 24px;
+        background-color: var(--bg);
+        background-image: radial-gradient(
+          circle at 20% 20%,
+          rgba(59, 130, 246, 0.06),
+          transparent 45%
+        );
+        color: var(--text-primary);
+        font-family: "Open Sans", sans-serif;
       }
 
-      @keyframes bgShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-
-      /* --- 2. Partikel Cyan/Purple (Floating Particles) --- */
-      .particle-container {
-        position: absolute;
-        top: 0;
-        left: 0;
+      #particles-canvas {
+        position: fixed;
+        inset: 0;
         width: 100%;
         height: 100%;
         pointer-events: none;
         z-index: 1;
       }
 
-      .particle {
-        position: absolute;
-        background: radial-gradient(
-          circle,
-          #FFB800 0%,
-          rgba(255, 184, 0, 0.3) 40%,
-          rgba(255, 184, 0, 0) 70%
-        );
-        border-radius: 50%;
-        opacity: 0;
-        animation: floatUp 10s infinite linear;
-        box-shadow: 0 0 10px rgba(255, 184, 0, 0.3);
-      }
-
-      /* Membuat variasi ukuran dan posisi partikel secara acak */
-      .p1 {
-        width: 10px;
-        height: 10px;
-        left: 10%;
-        animation-duration: 8s;
-        animation-delay: 0s;
-      }
-      .p2 {
-        width: 20px;
-        height: 20px;
-        left: 20%;
-        animation-duration: 12s;
-        animation-delay: 2s;
-      }
-      .p3 {
-        width: 5px;
-        height: 5px;
-        left: 35%;
-        animation-duration: 15s;
-        animation-delay: 4s;
-      }
-      .p4 {
-        width: 15px;
-        height: 15px;
-        left: 50%;
-        animation-duration: 10s;
-        animation-delay: 1s;
-      }
-      .p5 {
-        width: 8px;
-        height: 8px;
-        left: 65%;
-        animation-duration: 14s;
-        animation-delay: 3s;
-      }
-      .p6 {
-        width: 25px;
-        height: 25px;
-        left: 80%;
-        animation-duration: 18s;
-        animation-delay: 5s;
-      }
-      .p7 {
-        width: 6px;
-        height: 6px;
-        left: 90%;
-        animation-duration: 9s;
-        animation-delay: 0.5s;
-      }
-      .p8 {
-        width: 12px;
-        height: 12px;
-        left: 15%;
-        animation-duration: 11s;
-        animation-delay: 1.5s;
-      }
-      .p9 {
-        width: 8px;
-        height: 8px;
-        left: 25%;
-        animation-duration: 13s;
-        animation-delay: 2.5s;
-      }
-      .p10 {
-        width: 18px;
-        height: 18px;
-        left: 40%;
-        animation-duration: 16s;
-        animation-delay: 3.5s;
-      }
-      .p11 {
-        width: 7px;
-        height: 7px;
-        left: 55%;
-        animation-duration: 9.5s;
-        animation-delay: 0.8s;
-      }
-      .p12 {
-        width: 14px;
-        height: 14px;
-        left: 70%;
-        animation-duration: 12.5s;
-        animation-delay: 2s;
-      }
-      .p13 {
-        width: 6px;
-        height: 6px;
-        left: 85%;
-        animation-duration: 10.5s;
-        animation-delay: 1.2s;
-      }
-      .p14 {
-        width: 11px;
-        height: 11px;
-        left: 30%;
-        animation-duration: 14.5s;
-        animation-delay: 4.5s;
-      }
-      .p15 {
-        width: 9px;
-        height: 9px;
-        left: 75%;
-        animation-duration: 11.5s;
-        animation-delay: 3.2s;
-      }
-
-      /* Animasi Partikel Melayang */
-      @keyframes floatUp {
-        0% {
-          transform: translateY(110vh) scale(0);
+      @keyframes fadeUp {
+        from {
           opacity: 0;
+          transform: translateY(12px);
         }
-        20% {
-          opacity: 0.8;
-        }
-        80% {
-          opacity: 0.8;
-        }
-        100% {
-          transform: translateY(-10vh) scale(1);
-          opacity: 0;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
 
-      /* --- 3. Kartu Utama (Cybertech Glass Effect) --- */
+      @keyframes lineSweep {
+        0%, 100% {
+          opacity: 0.4;
+          transform: translateX(-8%);
+        }
+        50% {
+          opacity: 0.85;
+          transform: translateX(8%);
+        }
+      }
+
+      @keyframes subtleFloat {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+      }
+
       .main-card {
         position: relative;
         z-index: 10;
         display: flex;
         align-items: center;
-        gap: 60px;
-        padding: 50px;
-        max-width: 1200px;
-
-        /* Dark Cybertech Glass Effect dengan Blur Maksimal */
-        background: rgba(26, 26, 26, 0.3);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 184, 0, 0.4);
-        border-radius: 12px;
-        box-shadow: 0 0 20px rgba(255, 184, 0, 0.15);
-        position: relative;
+        gap: 48px;
+        padding: 40px;
+        max-width: 880px;
+        width: 100%;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7);
         overflow: hidden;
+        animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
-      /* Animasi efek cyber pada kartu */
       .main-card::before {
         content: "";
         position: absolute;
         top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg,
+        left: 12%;
+        right: 12%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
           transparent,
-          rgba(255, 184, 0, 0.1),
+          rgba(59, 130, 246, 0.55),
+          rgba(139, 92, 246, 0.55),
           transparent
         );
-        animation: scanlines 3s infinite;
         pointer-events: none;
-        z-index: 1;
+        animation: lineSweep 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
       }
 
-      @keyframes scanlines {
-        0% { left: -100%; }
-        100% { left: 100%; }
-      }
-
-      /* Hapus animasi scanlines yang terlalu mencolok */
-      .main-card::before {
-        animation: scanlines 5s infinite !important;
-        opacity: 0.05 !important;
-      }
-
-      /* --- 4. Bagian Gambar (Kiri) --- */
       .image-frame {
-        position: relative;
-        width: 350px;
-        height: 450px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        border-radius: 10px;
-        background: rgba(255, 184, 0, 0.02);
-        border: 1px solid rgba(255, 184, 0, 0.3);
-        box-shadow: 0 0 15px rgba(255, 184, 0, 0.1);
+        flex-shrink: 0;
+        width: 280px;
+        height: 350px;
+        border-radius: 12px;
+        background: var(--surface-deep);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both,
+          subtleFloat 7s ease-in-out 0.8s infinite;
+        transition: border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      /* Bingkai Ganda Cyber */
-      .image-frame::before {
-        content: "";
-        position: absolute;
-        top: -10px;
-        left: -10px;
-        right: -10px;
-        bottom: -10px;
-        border: 1px solid rgba(255, 0, 255, 0.15);
-        border-radius: 10px;
-        opacity: 0.3;
-        box-shadow: none;
+      .image-frame:hover {
+        border-color: var(--blue-border);
       }
 
       .hero-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        filter: brightness(1.05) contrast(1.1);
+        display: block;
+        will-change: transform;
+        transition-property: transform;
+        transition-duration: 700ms;
+        transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      /* --- 5. Bagian Teks (Kanan) --- */
+      .image-frame:hover .hero-image {
+        transform: scale(1.05);
+      }
+
       .text-content {
-        max-width: 500px;
-        position: relative;
-        z-index: 2;
+        flex: 1;
+        min-width: 0;
       }
 
       .main-title {
-        font-size: 4.5rem;
-        line-height: 0.9;
+        font-size: 3.1rem;
+        line-height: 1.08;
         margin: 0;
-        color: #FFB800;
         font-weight: 700;
-        font-family: "JetBrains Mono", monospace;
-
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        text-shadow: 0 0 5px rgba(255, 184, 0, 0.3);
+        letter-spacing: -0.025em;
+        color: var(--text-primary);
+        animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
       }
 
-      .subtitle {
-        font-family: "Inter", sans-serif;
-        font-size: 1.1rem;
-        font-weight: 300;
-        color: #FFD699;
-        margin-top: 20px;
-        border-top: 1px solid rgba(255, 184, 0, 0.3);
-        padding-top: 15px;
-        display: inline-block;
-        text-shadow: none;
-        letter-spacing: 0.5px;
+      .main-title .accent {
+        background: linear-gradient(90deg, #fafafa 25%, #93c5fd 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
 
-      .status-badge {
+      .description {
+        font-size: 0.96rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+        margin: 18px 0 0;
+        max-width: 440px;
+        animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+      }
+
+      .cta-link {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        margin-bottom: 20px;
-        padding: 8px 16px;
-        background: rgba(255, 184, 0, 0.08);
-        border: 1px solid rgba(255, 184, 0, 0.4);
-        border-radius: 6px;
-        color: #FFD699;
+        margin-top: 26px;
+        padding: 11px 20px;
+        background: var(--surface-deep);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text-primary);
+        font-size: 0.9rem;
         font-weight: 600;
-        font-size: 0.85rem;
-        font-family: "Inter", sans-serif;
-        letter-spacing: 1px;
-        box-shadow: none;
-        text-shadow: none;
+        text-decoration: none;
+        animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+        transition: border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      .pulse-dot {
-        width: 6px;
-        height: 6px;
-        background: #FFB800;
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-        box-shadow: 0 0 6px rgba(255, 184, 0, 0.5);
+      .cta-link:hover {
+        border-color: var(--blue-border);
+        color: var(--blue);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
       }
 
-      /* --- Animasi Tambahan --- */
-      @keyframes shine {
-        to {
-          background-position: 200% center;
-        }
+      .cta-arrow {
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(255, 184, 0, 0.4);
-        }
-        70% {
-          box-shadow: 0 0 0 6px rgba(255, 184, 0, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(255, 184, 0, 0);
-        }
-      }
-
-      /* Responsif HP */
-      @media (max-width: 1024px) {
-        .main-card {
-          gap: 40px;
-          padding: 40px;
-        }
-        .image-frame {
-          width: 300px;
-          height: 400px;
-        }
-        .main-title {
-          font-size: 3.5rem;
-        }
+      .cta-link:hover .cta-arrow {
+        transform: translateX(3px);
       }
 
       @media (max-width: 768px) {
-        body {
-          height: auto;
-          min-height: 100vh;
-          padding: 20px;
-        }
         .main-card {
           flex-direction: column;
           text-align: center;
-          padding: 40px 20px;
-          gap: 30px;
-          max-width: 100%;
+          padding: 32px 24px;
+          gap: 28px;
+        }
+        .description {
+          margin-left: auto;
+          margin-right: auto;
         }
         .main-title {
-          font-size: 2.5rem;
+          font-size: 2.35rem;
         }
         .image-frame {
-          width: 250px;
-          height: 320px;
-        }
-        .text-content {
-          max-width: 100%;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .main-card {
-          padding: 30px 15px;
-          gap: 20px;
-        }
-        .main-title {
-          font-size: 2rem;
-          letter-spacing: 1px;
-        }
-        .subtitle {
-          font-size: 0.95rem;
-        }
-        .status-badge {
-          font-size: 0.75rem;
-          padding: 6px 12px;
-        }
-        .image-frame {
-          width: 200px;
-          height: 260px;
+          width: 220px;
+          height: 275px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="particle-container">
-      <div class="particle p1"></div>
-      <div class="particle p2"></div>
-      <div class="particle p3"></div>
-      <div class="particle p4"></div>
-      <div class="particle p5"></div>
-      <div class="particle p6"></div>
-      <div class="particle p7"></div>
-      <div class="particle p8"></div>
-      <div class="particle p9"></div>
-      <div class="particle p10"></div>
-      <div class="particle p11"></div>
-      <div class="particle p12"></div>
-      <div class="particle p13"></div>
-      <div class="particle p14"></div>
-      <div class="particle p15"></div>
-    </div>
+    <canvas id="particles-canvas"></canvas>
 
-    <div class="main-card">
+    <main class="main-card">
       <div class="image-frame">
         <img
           src="{{ url_for('static', filename='images/asia.webp') }}"
           alt="Asia"
           class="hero-image"
         />
-        <!-- <img
-          src="https://img.freepik.com/free-photo/digital-art-style-illustration-men_23-2151126767.jpg?t=st=1716960000~exp=1716963600~hmac=a1b2c3d4"
-          alt="Asia Fantasy Character"
-          class="hero-image"
-        /> -->
       </div>
 
       <div class="text-content">
-        <div class="status-badge">
-          <div class="pulse-dot"></div>
-          SYSTEM ONLINE
-        </div>
-        <h1 class="main-title">Asia<br />Assistant</h1>
-        <div class="subtitle">"Serving you with divine intelligence."</div>
+        <h1 class="main-title">
+          Asia<br /><span class="accent">Assistant</span>
+        </h1>
+        <p class="description">
+          Backend AI engine for Iko's portfolio. Answers questions about his profile, skills, experience, and projects in real time.
+        </p>
+        <a
+          href="https://www.ikonyek.my.id/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-link"
+        >
+          <span>View Portfolio</span>
+          <span class="cta-arrow">&rarr;</span>
+        </a>
       </div>
-    </div>
+    </main>
+
+    <script>
+      (() => {
+        const canvas = document.getElementById("particles-canvas");
+        const ctx = canvas.getContext("2d");
+        let w = (canvas.width = window.innerWidth);
+        let h = (canvas.height = window.innerHeight);
+
+        const particles = Array.from({ length: 40 }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.6 + 0.8,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: -(Math.random() * 0.35 + 0.15),
+          alpha: Math.random() * 0.45 + 0.2,
+        }));
+
+        window.addEventListener("resize", () => {
+          w = canvas.width = window.innerWidth;
+          h = canvas.height = window.innerHeight;
+        });
+
+        function draw() {
+          ctx.clearRect(0, 0, w, h);
+          for (const p of particles) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+            if (p.x < -10) p.x = w + 10;
+            if (p.x > w + 10) p.x = -10;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+            ctx.fill();
+          }
+          requestAnimationFrame(draw);
+        }
+        draw();
+      })();
+    </script>
   </body>
 </html>

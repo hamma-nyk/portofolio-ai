@@ -958,6 +958,315 @@
         "You're welcome. Iko's door is always open for interesting collaborations.",
         "Goodbye! Have a great day with Asia Assistant."
       ]
+    },
+    {
+      "tag": "pengalaman_kerja",
+      "patterns": [
+        "Pengalaman kerja Iko",
+        "Pernah kerja dimana saja",
+        "Riwayat pekerjaan",
+        "Sudah berapa tahun kerja",
+        "Pengalaman profesional",
+        "Karir Iko selama ini",
+        "Pernah jadi apa aja",
+        "Work experience Iko"
+      ],
+      "responses": [
+        "Iko berpengalaman sejak lulus tahun 2020 di berbagai peran IT: **Network Engineer, IT Support, hingga Fullstack Developer** untuk proyek web, server, dan otomasi.",
+        "Pengalaman Iko mencakup instalasi jaringan kantor & Fiber Optic, maintenance infrastruktur IT, serta membangun aplikasi web, bot, dan sistem monitoring."
+      ]
+    },
+    {
+      "tag": "en_pengalaman_kerja",
+      "patterns": [
+        "Work experience",
+        "Where has he worked",
+        "Years of experience",
+        "Professional background",
+        "Career history",
+        "Job experience"
+      ],
+      "responses": [
+        "Since graduating in 2020, Iko has worked across **Network Engineering, IT Support, and Fullstack Development**—handling office networks, servers, web apps, and automation.",
+        "Iko's experience spans physical Fiber Optic & network setups, IT infrastructure maintenance, and end-to-end web/app development."
+      ]
+    },
+    {
+      "tag": "cv_resume",
+      "patterns": [
+        "Minta CV Iko",
+        "Ada CV nya ga",
+        "Download CV",
+        "Lihat resume Iko",
+        "Link CV",
+        "Kirim CV dong"
+      ],
+      "responses": [
+        "CV & profil lengkap Iko bisa langsung dilihat/unduh melalui tombol **CV / Resume** di website portofolio ini, atau hubungi Iko via WhatsApp/LinkedIn untuk versi terbaru.",
+        "Silakan cek bagian **About / Resume** di halaman utama portofolio ini untuk mengunduh CV resmi Iko!"
+      ]
+    },
+    {
+      "tag": "en_cv_resume",
+      "patterns": [
+        "Can I see his CV",
+        "Download resume",
+        "Where is his CV",
+        "Send resume",
+        "Link to CV"
+      ],
+      "responses": [
+        "You can view or download Iko's CV directly from the **CV / Resume** button on this portfolio site, or request the latest copy via WhatsApp/LinkedIn.",
+        "Please check the **About / Resume** section on the main page to download Iko's official CV!"
+      ]
+    },
+    {
+      "tag": "skill_devops_server",
+      "patterns": [
+        "Bisa Linux ga",
+        "Paham server Ubuntu",
+        "Bisa Docker",
+        "Paham Git dan GitHub",
+        "Bisa deploy website",
+        "Setting VPS",
+        "Nginx atau Apache",
+        "Cloudflare",
+        "Proxmox",
+        "DevOps",
+        "Hosting dan domain"
+      ],
+      "responses": [
+        "Untuk urusan Server & DevOps, Iko terbiasa dengan **Linux (Ubuntu/Debian), Nginx, Docker, Git/GitHub, Cloudflare, serta setup VPS & Hosting**.",
+        "Iko tidak hanya bisa coding aplikasinya, tapi juga men-deploy dan mengamankan server produksinya (SSL, reverse proxy, firewall, dan monitoring)."
+      ]
+    },
+    {
+      "tag": "en_skill_devops_server",
+      "patterns": [
+        "Does he know Linux",
+        "Docker skills",
+        "Git and GitHub",
+        "Server deployment",
+        "VPS setup",
+        "DevOps experience",
+        "Cloudflare and Nginx"
+      ],
+      "responses": [
+        "For Server & DevOps, Iko is experienced with **Linux (Ubuntu/Debian), Nginx, Docker, Git/GitHub, Cloudflare, and VPS/Hosting setup**.",
+        "Iko doesn't just write code—he also deploys, secures, and monitors production servers (SSL, reverse proxy, firewall)."
+      ]
+    },
+    {
+      "tag": "skill_iot",
+      "patterns": [
+        "Bisa IoT ga",
+        "Pernah bikin project IoT",
+        "Arduino",
+        "ESP32",
+        "ESP8266",
+        "Mikrokontroler",
+        "Sensor suhu",
+        "Smart home"
+      ],
+      "responses": [
+        "Ya! Iko juga mengulik **IoT (Internet of Things)** menggunakan mikrokontroler seperti **ESP32/ESP8266 dan Arduino** yang terhubung ke dashboard web atau notifikasi bot.",
+        "IoT adalah salah satu irisan favorit Iko antara hardware dan software—mulai dari pembacaan sensor hingga monitoring real-time di web."
+      ]
+    },
+    {
+      "tag": "en_skill_iot",
+      "patterns": [
+        "IoT skills",
+        "Arduino or ESP32",
+        "Internet of Things",
+        "Microcontroller projects",
+        "Smart home automation"
+      ],
+      "responses": [
+        "Yes! Iko explores **IoT (Internet of Things)** using **ESP32/ESP8266 and Arduino**, integrating hardware sensors with web dashboards and bot alerts.",
+        "IoT is one of Iko's favorite bridges between hardware and software—from sensor telemetry to real-time web monitoring."
+      ]
+    },
+    {
+      "tag": "soft_skills",
+      "patterns": [
+        "Kelebihan Iko apa",
+        "Kenapa harus hire Iko",
+        "Soft skill Iko",
+        "Bisa bahasa Inggris ga",
+        "Bisa kerja tim",
+        "Komunikasinya gimana",
+        "Problem solving"
+      ],
+      "responses": [
+        "Keunggulan utama Iko adalah **adaptif, fast learner, dan problem solver**—mampu berkomunikasi baik dengan tim teknis maupun klien non-teknis, serta menguasai Bahasa Indonesia & Inggris teknis.",
+        "Mengapa hire Iko? Karena Anda mendapat 2 keahlian sekaligus: **Infrastruktur Jaringan + Software Development**, lengkap dengan etos kerja yang rapi dan kolaboratif."
+      ]
+    },
+    {
+      "tag": "en_soft_skills",
+      "patterns": [
+        "Why hire Iko",
+        "What are his strengths",
+        "Soft skills",
+        "English proficiency",
+        "Teamwork and communication"
+      ],
+      "responses": [
+        "Iko's core strengths are **adaptability, fast learning, and strong problem-solving**—communicating clearly with both technical teams and non-technical clients.",
+        "Why hire Iko? You get a rare **Network Infrastructure + Fullstack Development** hybrid with a reliable, collaborative work ethic."
+      ]
+    },
+    {
+      "tag": "harga_estimasi",
+      "patterns": [
+        "Berapa harga jasa Iko",
+        "Biaya bikin website berapa",
+        "Tarif freelance",
+        "Bisa nego harga",
+        "Budget minimal berapa",
+        "Rate card Iko"
+      ],
+      "responses": [
+        "Biaya proyek sangat fleksibel dan disesuaikan dengan **kompleksitas fitur, skala jaringan, serta deadline**. Konsultasi awal gratis—silakan chat via WhatsApp untuk estimasi penawaran!",
+        "Iko menawarkan harga yang kompetitif dan transparan (bisa per proyek atau retainer). Yuk diskusikan kebutuhanmu dulu via menu Contact."
+      ]
+    },
+    {
+      "tag": "en_harga_estimasi",
+      "patterns": [
+        "How much does he charge",
+        "Pricing for website",
+        "Freelance rates",
+        "Cost estimate",
+        "Is the price negotiable"
+      ],
+      "responses": [
+        "Project pricing is flexible based on **feature complexity, network scale, and timeline**. Initial consultation is free—reach out via WhatsApp for a tailored quote!",
+        "Iko offers competitive, transparent pricing (project-based or retainer). Let's discuss your requirements in the Contact section."
+      ]
+    },
+    {
+      "tag": "ketersediaan_waktu",
+      "patterns": [
+        "Kapan Iko online",
+        "Fast respon ga",
+        "Bisa meeting atau call",
+        "Jadwal kosong Iko",
+        "Kapan bisa mulai kerja"
+      ],
+      "responses": [
+        "Iko umumnya merespon pesan WhatsApp/Email dengan cepat di jam kerja (WIB). Untuk **meeting online (Zoom/Google Meet)** atau mulai proyek baru, jadwalnya sangat fleksibel!",
+        "Untuk proyek baru atau interview kerja, Iko siap menjadwalkan sesi diskusi kapan saja sesuai kesepakatan bersama."
+      ]
+    },
+    {
+      "tag": "en_ketersediaan_waktu",
+      "patterns": [
+        "When is Iko available",
+        "Can we schedule a call",
+        "Meeting availability",
+        "When can he start"
+      ],
+      "responses": [
+        "Iko usually replies promptly during WIB business hours and is very flexible for **online meetings (Zoom/Google Meet)** or interviews.",
+        "Iko is ready to start new projects or full-time roles—reach out via WhatsApp or the Contact form to schedule a call."
+      ]
+    },
+    {
+      "tag": "pujian_reaksi",
+      "patterns": [
+        "Keren",
+        "Mantap",
+        "Bagus banget",
+        "Hebat",
+        "Pintar",
+        "Canggih",
+        "Oke sip",
+        "Siap",
+        "Noted",
+        "Wah menarik",
+        "Good job"
+      ],
+      "responses": [
+        "Terima kasih! 😊 Ada lagi yang ingin ditanyakan tentang **skill, proyek, atau kontak Iko**?",
+        "Siap! Kalau butuh info lebih detail soal portofolio atau mau langsung diskusi proyek dengan Iko, kabari saja ya."
+      ]
+    },
+    {
+      "tag": "en_pujian_reaksi",
+      "patterns": [
+        "Awesome",
+        "Cool",
+        "Great",
+        "Nice",
+        "Smart",
+        "Impressive",
+        "Okay got it",
+        "Sounds good"
+      ],
+      "responses": [
+        "Thank you! 😊 Anything else you'd like to know about **Iko's skills, projects, or contact info**?",
+        "Glad to help! Let me know if you want more details or wish to reach out to Iko."
+      ]
+    },
+    {
+      "tag": "bantuan_menu",
+      "patterns": [
+        "Bisa bantu apa aja",
+        "Menu",
+        "Help",
+        "Panduan",
+        "Mau tanya apa ya",
+        "Daftar topik",
+        "Kamu bisa jawab apa"
+      ],
+      "responses": [
+        "Saya bisa bantu jawab seputar Iko! Coba tanyakan:\n1. **Profil & Status Kerja** (Siapa Iko? Open to work?)\n2. **Keahlian Teknis** (Network/Mikrotik, Backend, Frontend, Database, DevOps, IoT, AI, IT Support)\n3. **Pendidikan & Sertifikasi**\n4. **Proyek & Portofolio** (MyCtn, Monitoring Server, WA Bot, Asia)\n5. **Jasa Freelance, Estimasi Harga & Kontak**",
+        "Bingung mulai dari mana? Ketik saja misalnya: *'Apa skill Iko?'*, *'Lihat proyek Iko'*, *'Bisa setting Mikrotik?'*, atau *'Minta kontak Iko'*."
+      ]
+    },
+    {
+      "tag": "en_bantuan_menu",
+      "patterns": [
+        "What can you do",
+        "Help menu",
+        "List of topics",
+        "What can I ask",
+        "Commands"
+      ],
+      "responses": [
+        "I can tell you everything about Iko! Try asking about:\n1. **Profile & Availability** (Who is Iko? Open to work?)\n2. **Technical Skills** (Networking/Mikrotik, Backend, Frontend, Database, DevOps, IoT, AI, IT Support)\n3. **Education & Certifications**\n4. **Projects** (MyCtn, Server Monitoring, WA Bot, Asia)\n5. **Freelance Services, Pricing & Contact**",
+        "Not sure where to start? Try: *'What are Iko's skills?'*, *'Show his projects'*, or *'How to contact Iko?'*"
+      ]
+    },
+    {
+      "tag": "humor_santai",
+      "patterns": [
+        "Apa kabar",
+        "Gimana kabarnya",
+        "Lagi ngapain",
+        "Udah makan belum",
+        "Ngantuk ga",
+        "Bosan nih"
+      ],
+      "responses": [
+        "Kabar saya selalu prima 100% CPU sehat! 😄 Siap nemenin kamu kenalan lebih jauh dengan portofolio Iko.",
+        "Lagi standby 24/7 nih buat jawab pertanyaanmu tentang Iko. Mau bahas proyek atau skill beliau?"
+      ]
+    },
+    {
+      "tag": "en_humor_santai",
+      "patterns": [
+        "How are you",
+        "How is it going",
+        "What are you doing",
+        "Are you busy"
+      ],
+      "responses": [
+        "Doing great and running at 100% uptime! 😄 Ready to tell you all about Iko's work.",
+        "Just standing by 24/7 to help you explore Iko's portfolio. What would you like to know?"
+      ]
     }
   ]
 }
