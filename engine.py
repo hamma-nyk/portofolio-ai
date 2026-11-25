@@ -4,9 +4,14 @@ import os
 import pickle
 import random
 import re
+import tempfile
+import threading
 from collections import Counter, defaultdict
 from difflib import SequenceMatcher
 import numpy as np
+
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "-1")
+os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -159,29 +164,36 @@ class AsiaEngine:
         self.nltk = None
         self.sessions = {}        # session_id -> {"last_tag": str, "seen": set}
         self._loaded = False
+        self._keras_started = False
+        self._load_lock = threading.Lock()
 
     def load(self):
         if self._loaded:
             return True
-        try:
-            with open(os.path.join(BASE_DIR, "intents.json"), encoding="utf-8") as f:
-                self.intents_data = json.load(f)
+        with self._load_lock:
+            if self._loaded:
+                return True
+            try:
+                with open(os.path.join(BASE_DIR, "intents.json"), encoding="utf-8") as f:
+                    self.intents_data = json.load(f)
 
-            self.intent_map = {i["tag"]: i for i in self.intents_data["intents"]}
-            self.patterns = []
-            for intent in self.intents_data["intents"]:
-                for p in intent["patterns"]:
-                    norm_p = normalize_text(p)
-                    if norm_p:
-                        self.patterns.append((norm_p, intent["tag"]))
+                self.intent_map = {i["tag"]: i for i in self.intents_data["intents"]}
+                self.patterns = []
+                for intent in self.intents_data["intents"]:
+                    for p in intent["patterns"]:
+                        norm_p = normalize_text(p)
+                        if norm_p:
+                            self.patterns.append((norm_p, intent["tag"]))
 
-            self._build_tfidf()
-            self._try_load_keras()
-            self._loaded = True
-            return True
-        except Exception as e:
-            print(f"❌ Gagal memuat engine: {e}")
-            return False
+                self._build_tfidf()
+                self._loaded = True
+                if not self._keras_started:
+                    self._keras_started = True
+                    threading.Thread(target=self._try_load_keras, daemon=True).start()
+                return True
+            except Exception as e:
+                print(f"❌ Gagal memuat engine: {e}")
+                return False
 
     def _tokenize_features(self, norm_text):
         words = norm_text.split()
@@ -227,17 +239,24 @@ class AsiaEngine:
             from nltk.stem import WordNetLemmatizer
             from tensorflow.keras.models import load_model
 
+            nltk_dir = os.path.join(tempfile.gettempdir(), "nltk_data")
+            os.makedirs(nltk_dir, exist_ok=True)
+            if nltk_dir not in nltk.data.path:
+                nltk.data.path.insert(0, nltk_dir)
+
             for pkg in ("tokenizers/punkt", "tokenizers/punkt_tab", "corpora/wordnet"):
                 try:
                     nltk.data.find(pkg)
                 except LookupError:
-                    nltk.download(pkg.split("/")[-1], quiet=True)
+                    nltk.download(pkg.split("/")[-1], download_dir=nltk_dir, quiet=True)
 
             self.nltk = nltk
             self.lemmatizer = WordNetLemmatizer()
-            self.keras_words = pickle.load(open(os.path.join(BASE_DIR, "words.pkl"), "rb"))
-            self.keras_classes = pickle.load(open(os.path.join(BASE_DIR, "classes.pkl"), "rb"))
-            self.keras_model = load_model(os.path.join(BASE_DIR, "chatbot_model.h5"))
+            with open(os.path.join(BASE_DIR, "words.pkl"), "rb") as f:
+                self.keras_words = pickle.load(f)
+            with open(os.path.join(BASE_DIR, "classes.pkl"), "rb") as f:
+                self.keras_classes = pickle.load(f)
+            self.keras_model = load_model(os.path.join(BASE_DIR, "chatbot_model.h5"), compile=False)
         except Exception:
             self.keras_model = None
 
